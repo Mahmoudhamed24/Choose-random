@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار شخص ضد شخص</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>اختيار شخص ضد شخص</h1>
+
+        <div class="input-section">
+            <h2>الأسماء:</h2>
+            <ul id="namesList"></ul>
+        </div>
+
+        <div class="selected-contestants">
+            <input type="text" id="newContestant" placeholder="اسم المتسابق">
+            <button onclick="addContestant()">إضافة</button>
+
+            <div class="selected-contestants-list">
+                <button onclick="selectRandomPair()" id="randomButton">اختيار عشوائي</button>
+                <h2>المتسابقون المختارون:</h2>
+                <ul id="selectedContestantsList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>
