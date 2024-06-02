@@ -26,7 +26,7 @@ function selectRandomPair() {
     var listItem = document.createElement("li");
 
     listItem.className = "selected-list-item";
-    listItem.innerHTML = `<span>${contestant1}</span> 🆚 <span>${contestant2}</span>`;
+    listItem.innerHTML = `<span>${contestant1}</span> 🔄 <span>${contestant2}</span>`;
 
     selectedContestantsList.appendChild(listItem);
 
