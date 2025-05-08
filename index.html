@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
@@ -29,5 +29,299 @@
     </div>
 
     <script src="test.js"></script>
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مواجهات عشوائية - النسخة الاحترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أنماط CSS مخصصة */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #newContestant {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        #newContestant:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .lists-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .contestant-list {
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .contestant-list li {
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .vs-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .lists-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>مواجهات عشوائية 🎯</h1>
+            <p>نظام احترافي لإدارة المسابقات والمواجهات</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="newContestant" 
+                    placeholder="أدخل اسم المتسابق..."
+                    autocomplete="off"
+                >
+                <button class="btn btn-primary" onclick="addContestant()">
+                    <i class="fas fa-plus"></i>
+                    إضافة متسابق
+                </button>
+            </div>
+        </div>
+
+        <div class="lists-container">
+            <div class="card">
+                <h2>قائمة المتسابقين 🧑🤝🧑</h2>
+                <ul class="contestant-list" id="namesList"></ul>
+            </div>
+
+            <div class="card">
+                <h2>المواجهات المختارة ⚔️</h2>
+                <button class="btn btn-primary" onclick="selectRandomPair()" style="width: 100%; margin-bottom: 1.5rem;">
+                    <i class="fas fa-random"></i>
+                    توليد مواجهة عشوائية
+                </button>
+                <ul class="contestant-list" id="selectedContestantsList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // نفس كود JavaScript السابق مع إضافة تحسينات
+        let allContestants = JSON.parse(localStorage.getItem('contestants')) || [];
+        let selectedPairs = [];
+
+        function updateNamesList() {
+            const namesList = document.getElementById('namesList');
+            namesList.innerHTML = allContestants.map(name => `
+                <li>
+                    <span>${name}</span>
+                    <span class="vs-badge">متسابق</span>
+                </li>
+            `).join('');
+        }
+
+        function addContestant() {
+            const input = document.getElementById('newContestant');
+            const name = input.value.trim();
+            
+            if (name && !allContestants.includes(name)) {
+                allContestants.push(name);
+                updateNamesList();
+                saveData();
+                input.value = '';
+                input.focus();
+            } else if (allContestants.includes(name)) {
+                alert('⚠️ هذا الاسم موجود مسبقاً!');
+            }
+        }
+
+        function selectRandomPair() {
+            if (allContestants.length < 2) {
+                showAlert(allContestants.length ? 
+                    `بقي متسابق واحد فقط: ${allContestants[0]}` : 
+                    "❗ الرجاء إضافة متسابقين أولاً"
+                );
+                return;
+            }
+
+            const pair = [];
+            while (pair.length < 2) {
+                const randomIndex = Math.floor(Math.random() * allContestants.length);
+                pair.push(allContestants.splice(randomIndex, 1)[0]);
+            }
+
+            selectedPairs.push(pair);
+            updateNamesList();
+            saveData();
+            displayPairs();
+        }
+
+        function displayPairs() {
+            const list = document.getElementById('selectedContestantsList');
+            list.innerHTML = selectedPairs.map((pair, index) => `
+                <li>
+                    <span>${pair[0]}</span>
+                    <span class="vs-badge">VS</span>
+                    <span>${pair[1]}</span>
+                </li>
+            `).join('');
+        }
+
+        function saveData() {
+            localStorage.setItem('contestants', JSON.stringify(allContestants));
+        }
+
+        function showAlert(message) {
+            const alert = document.createElement('div');
+            alert.style.position = 'fixed';
+            alert.style.top = '20px';
+            alert.style.right = '20px';
+            alert.style.padding = '1rem 2rem';
+            alert.style.background = '#e74c3c';
+            alert.style.color = 'white';
+            alert.style.borderRadius = '8px';
+            alert.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            alert.textContent = message;
+            
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        // التهيئة الأولية
+        updateNamesList();
+        document.getElementById('newContestant').focus();
+    </script>
 </body>
 </html>
